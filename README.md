@@ -34,7 +34,7 @@ By the end of this workshop, you'll have created:
 
 You can use the following template to clone the template and deploy to your Cloudflare Account
 
-<!-- TODO: deploy to cloudflare button -->
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/TimoWilhelm/hello-chat-starter/tree/main/)
 
 Alternatively, you can clone the template repository from GitHub:
 
