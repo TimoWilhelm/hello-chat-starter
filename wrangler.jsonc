@@ -10,8 +10,20 @@
 	"observability": {
 		"enabled": true
 	},
-	// "durable_objects": {},
-	// "migrations": [],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "Chat",
+				"class_name": "Chat"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["Chat"]
+		}
+	],
 	"assets": {
 		"directory": "./public/",
 		"binding": "ASSETS",
