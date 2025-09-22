@@ -17,6 +17,14 @@ By the end of this workshop, you'll have created:
 - **WebSocket-based** real-time communication
 - **Serverless architecture** with state management
 
+## 📋 Completed Project Reference
+
+If you want to see the final implementation or need a reference while following along, you can find the completed project at:
+
+**[https://github.com/TimoWilhelm/hello-chat](https://github.com/TimoWilhelm/hello-chat)**
+
+This repository contains the fully implemented chat application with all features covered in this workshop.
+
 ---
 
 ## 🏁 Step 1: Project Setup & frontend walkthrough
