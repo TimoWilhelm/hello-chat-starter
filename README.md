@@ -2,8 +2,6 @@
 
 ## Workshop Overview
 
-We'll kick off with a brief overview of the Cloudflare Developer Platform and Durable Objects, then dive into a hands-on session to build a real-time distributed chat application that runs globally on Cloudflare.
-
 **What to bring:** Your laptop with your favorite code editor, a free Cloudflare account (can be created for free at <https://dash.cloudflare.com/sign-up>), and some JavaScript or TypeScript experience would be a plus.
 
 ## 🚀 A Step-by-Step Workshop
@@ -30,7 +28,7 @@ By the end of this workshop, you'll have created:
 
 ---
 
-## 🏁 Step 1: Project Setup
+## 🏁 Step 1: Project Setup & frontend walkthrough
 
 You can use the following template to clone the template and deploy to your Cloudflare Account
 
@@ -57,9 +55,54 @@ npm install
 
 ## 🏗️ Step 1: Durable Object Basics
 
-Let's start building our backend! Create the basic structure in `src/index.ts`:
+### What are Durable Objects?
 
-<!-- TODO: DO template, migrations -->
+**Durable Objects** are Cloudflare's stateful serverless compute primitive that provides:
+- **Consistent State**: Each object maintains its own isolated state that persists across requests
+- **Global Uniqueness**: Each Durable Object instance is globally unique and runs in a single location
+- **WebSocket Support**: Perfect for real-time applications like chat, gaming, and collaboration tools
+- **Automatic Scaling**: Creates new instances on-demand and routes requests to the correct object
+
+### Configuration Setup
+
+Your `wrangler.jsonc` file already includes the necessary Durable Object configuration:
+
+```jsonc
+{
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "Chat",           // Binding name used in your Worker
+        "class_name": "Chat"      // The exported class name
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["Chat"]  // Register the Chat class for storage
+    }
+  ]
+}
+```
+
+### Key Concepts for Implementation
+
+In the upcoming sections, we'll implement:
+
+1. **Durable Object Class**: A `Chat` class that extends `DurableObject<Env>` to handle WebSocket connections and state
+2. **Main Worker**: Routes requests to the appropriate Durable Object instance based on room names
+3. **Type Safety**: TypeScript interfaces for our chat messages and environment
+4. **Room Isolation**: Each chat room gets its own Durable Object instance with isolated state
+
+The configuration above ensures that:
+- Each `Chat` Durable Object can store persistent data using SQLite storage
+- The binding allows your Worker to create and access Durable Object instances
+- Migrations track the evolution of your Durable Object classes
+
+**🎯 Understanding Check:** The `wrangler.jsonc` configuration is already set up for you. Next, we'll start implementing the actual chat functionality!
+
+---
 
 ## 💬 Step 2: WebSocket Message Handling
 
