@@ -17,15 +17,6 @@ By the end of this workshop, you'll have created:
 - **WebSocket-based** real-time communication
 - **Serverless architecture** with state management
 
-## ⏱️ Timeline Overview
-
-- **Setup & Overview** - Project initialization
-- **Frontend Walkthrough** - Creating the chat interface
-- **Durable Object Basics** - Building the chat room
-- **WebSocket Implementation** - Real-time messaging
-- **Message Persistence** - Adding storage
-- **Testing & Enhancement** - Testing and improvements
-
 ---
 
 ## 🏁 Step 1: Project Setup & frontend walkthrough
