@@ -29,11 +29,45 @@ This repository contains the fully implemented chat application with all feature
 
 ## 🏁 Step 1: Project Setup & frontend walkthrough
 
-You can use the following template to clone the template and deploy to your Cloudflare Account
+### Development Environment
+
+To run this project locally, you need to have a few development tools installed on your machine
+
+<details>
+<summary>git</summary>
+Git is a distributed version control system that helps you manage different versions of you code and download projects from GitHub or other websites.
+</details>
+
+<details>
+<summary>JavaScript</summary>
+JavaScript is a programming language that is most well-known as the scripting language for Web pages.
+</details>
+
+<details>
+<summary>TypeScript</summary>
+TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling. It converts to normal JavaScript, which runs anywhere JavaScript runs.
+</details>
+
+<details>
+<summary>Node.js</summary>
+Node.js is a runtime to run JavaScript code outside of Web browsers.
+</details>
+
+<details>
+<summary>NPM</summary>
+NPM stands for "Node Package Manager" and it allows you to download code written by other people and import it into your projects. It comes bundled with Node.js
+</details>
+
+<details>
+<summary>Wrangler</summary>
+Wrangler is a command line tool to manage the local development of Cloudflare Workers. It uses an emulator ([Miniflare](https://developers.cloudflare.com/workers/testing/miniflare/)) under the hood to simulate the same environment the code would run in on Cloudflare.
+</details>
+
+You can use the following template to clone the template
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/TimoWilhelm/hello-chat-starter/tree/main/)
 
-Alternatively, you can clone the template repository from GitHub:
+Alternatively, you can clone the repository directly from GitHub:
 
 ```bash
 git clone https://github.com/TimoWilhelm/hello-chat-starter.git
