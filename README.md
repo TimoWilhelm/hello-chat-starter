@@ -57,6 +57,7 @@ npm install
 ### What are Durable Objects?
 
 **Durable Objects** are Cloudflare's stateful serverless compute primitive that provides:
+
 - **Consistent State**: Each object maintains its own isolated state that persists across requests
 - **Global Uniqueness**: Each Durable Object instance is globally unique and runs in a single location
 - **WebSocket Support**: Perfect for real-time applications like chat, gaming, and collaboration tools
@@ -95,6 +96,7 @@ In the upcoming sections, we'll implement:
 4. **Room Isolation**: Each chat room gets its own Durable Object instance with isolated state
 
 The configuration above ensures that:
+
 - Each `Chat` Durable Object can store persistent data using SQLite storage
 - The binding allows your Worker to create and access Durable Object instances
 - Migrations track the evolution of your Durable Object classes
@@ -214,7 +216,21 @@ webSocketError(ws: WebSocket, error: unknown) {
 }
 ```
 
-**🎯 Test Point:** Your chat should now handle real-time messaging between users!
+**🎯 Test Point:** Your chat should now handle real-time messaging between users
+
+---
+
+### 🚀 Deploy to Cloudflare
+
+You can deploy your chat app to Cloudflare using the following command:
+
+```bash
+# Deploy your chat app
+npm run deploy
+
+# Your app will be available at:
+# https://hello-chat.YOUR-SUBDOMAIN.workers.dev
+```
 
 ---
 
