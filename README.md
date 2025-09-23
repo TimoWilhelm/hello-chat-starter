@@ -107,26 +107,6 @@ The configuration above ensures that:
 
 Now let's add the core messaging functionality. Add these methods to your `Chat` class:
 
-### Broadcast Messages
-
-```typescript
-// Broadcast message to all connected clients except sender
- private broadcast(data: ChatMessage, self: WebSocket) {
-  // Get all WebSocket connections for this Durable Object
-  for (const ws of this.ctx.getWebSockets()) {
-   // Don't send message back to sender
-   if (ws === self) continue;
-
-   // Send message to other clients
-   try {
-    ws.send(JSON.stringify({ message: data.message, name: data.name, timestamp: data.timestamp }));
-   } catch (error) {
-    console.error('Error broadcasting to client:', error);
-   }
-  }
- }
- ```
-
 ### Accept Incoming WebSocket connections
 
 ```typescript
@@ -162,6 +142,26 @@ private async handleWebSocketUpgrade(request: Request, name: string) {
   }
 
   return new Response('Not Found', { status: 404 });
+ }
+ ```
+
+### Broadcast Messages
+
+```typescript
+// Broadcast message to all connected clients except sender
+ private broadcast(data: ChatMessage, self: WebSocket) {
+  // Get all WebSocket connections for this Durable Object
+  for (const ws of this.ctx.getWebSockets()) {
+   // Don't send message back to sender
+   if (ws === self) continue;
+
+   // Send message to other clients
+   try {
+    ws.send(JSON.stringify({ message: data.message, name: data.name, timestamp: data.timestamp }));
+   } catch (error) {
+    console.error('Error broadcasting to client:', error);
+   }
+  }
  }
  ```
 
@@ -471,12 +471,5 @@ Track online users in your Durable Object:
 - **Room-based architecture** with isolated state per object
 - **Message persistence** with automatic storage APIs
 - **Global deployment** with edge computing
-
-## 🎯 Next Steps
-
-- Explore [Cloudflare D1](https://developers.cloudflare.com/d1/) for more complex data needs
-- Add [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/applications/) for authentication
-- Implement file sharing with [Cloudflare R2](https://developers.cloudflare.com/r2/)
-- Add [Cloudflare Analytics](https://developers.cloudflare.com/analytics/) for insights
 
 Great job building your real-time chat application! 🚀
