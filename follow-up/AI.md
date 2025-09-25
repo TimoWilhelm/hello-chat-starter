@@ -38,35 +38,35 @@ Update your `wrangler.jsonc` file by adding the AI binding in the bindings secti
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "hello-chat",
-	"main": "src/index.ts",
-	"compatibility_date": "2025-09-12",
-	"observability": {
-		"enabled": true
-	},
-	"ai": {
-		"binding": "AI"
-	},
-	"durable_objects": {
-		"bindings": [
-			{
-				"name": "Chat",
-				"class_name": "Chat"
-			}
-		]
-	},
-	"migrations": [
-		{
-			"tag": "v1",
-			"new_sqlite_classes": ["Chat"]
-		}
-	],
-	"assets": {
-		"directory": "./public/",
-		"binding": "ASSETS",
-		"not_found_handling": "single-page-application"
-	}
+ "$schema": "node_modules/wrangler/config-schema.json",
+ "name": "hello-chat",
+ "main": "src/index.ts",
+ "compatibility_date": "2025-09-12",
+ "observability": {
+  "enabled": true
+ },
+ "ai": {
+  "binding": "AI"
+ },
+ "durable_objects": {
+  "bindings": [
+   {
+    "name": "Chat",
+    "class_name": "Chat"
+   }
+  ]
+ },
+ "migrations": [
+  {
+   "tag": "v1",
+   "new_sqlite_classes": ["Chat"]
+  }
+ ],
+ "assets": {
+  "directory": "./public/",
+  "binding": "ASSETS",
+  "not_found_handling": "single-page-application"
+ }
 }
 ```
 
@@ -106,31 +106,12 @@ We'll use the `@cf/meta/llama-3-8b-instruct-awq` model, which is:
 
 Now we'll modify your existing `webSocketMessage` function to add AI emoji generation when messages start with `emoji:`.
 
-Replace your current `webSocketMessage` method in the `Chat` class with this enhanced version:
+Update your current `webSocketMessage` method in the `Chat` class with a new logic to handle AI emoji generation:
 
 ```typescript
 async webSocketMessage(ws: WebSocket, data: string) {
     try {
-        const parsed = JSON.parse(data);
-        const { message } = parsed;
-
-        // Validate message content
-        if (!message || typeof message !== 'string' || message.trim().length === 0) {
-            return; // Ignore empty messages
-        }
-
-        // Get user info from WebSocket attachment
-        const { name } = ws.deserializeAttachment();
-
-        // Create message object with timestamp
-        const chatMessage: ChatMessage = {
-            message: message.trim(),
-            name,
-            timestamp: Date.now(),
-        };
-
-        // Store message in Durable Object storage
-        this.ctx.storage.kv.put(`msg_${chatMessage.timestamp}`, chatMessage);
+        ...
 
         // Broadcast to all OTHER connected clients (not sender)
         this.broadcast(chatMessage, ws);
@@ -176,6 +157,7 @@ async webSocketMessage(ws: WebSocket, data: string) {
 ### Testing the Emoji Generation
 
 1. **Start your development server**:
+
    ```bash
    npm run dev
    ```
