@@ -47,23 +47,8 @@ Update your `wrangler.jsonc` file by adding the rate limits configuration:
   "observability": {
     "enabled": true
   },
-  "ai": {
-    "binding": "AI"
-  },
-  "durable_objects": {
-    "bindings": [
-      {
-        "name": "Chat",
-        "class_name": "Chat"
-      }
-    ]
-  },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_sqlite_classes": ["Chat"]
-    }
-  ],
+
+  // # New Rate Limit Binding
   "ratelimits": [
     {
       "name": "RATELIMIT",
@@ -74,11 +59,8 @@ Update your `wrangler.jsonc` file by adding the rate limits configuration:
       }
     }
   ],
-  "assets": {
-    "directory": "./public/",
-    "binding": "ASSETS",
-    "not_found_handling": "single-page-application"
-  }
+
+...
 }
 ```
 
@@ -320,7 +302,6 @@ You've successfully added managed rate limiting to your chat application:
 - ✅ **Automatic Enforcement** with user-friendly error messages
 - ✅ **Spam Protection** to maintain chat quality
 - ✅ **Global Rate Limiting** managed at Cloudflare's edge
-
 
 ## 📚 Key Rate Limiting Concepts Learned
 

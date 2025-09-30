@@ -45,28 +45,13 @@ Update your `wrangler.jsonc` file by adding the AI binding in the bindings secti
  "observability": {
   "enabled": true
  },
+
+ // # New AI Binding
  "ai": {
   "binding": "AI"
  },
- "durable_objects": {
-  "bindings": [
-   {
-    "name": "Chat",
-    "class_name": "Chat"
-   }
-  ]
- },
- "migrations": [
-  {
-   "tag": "v1",
-   "new_sqlite_classes": ["Chat"]
-  }
- ],
- "assets": {
-  "directory": "./public/",
-  "binding": "ASSETS",
-  "not_found_handling": "single-page-application"
- }
+
+...
 }
 ```
 
