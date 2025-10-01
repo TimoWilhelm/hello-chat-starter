@@ -185,7 +185,7 @@ private async handleWebSocketUpgrade(request: Request, name: string) {
 
 ```typescript
 // Broadcast message to all connected clients except sender
- private broadcast(data: ChatMessage, self: WebSocket) {
+ private broadcast(data: ChatMessage, self?: WebSocket) {
   // Get all WebSocket connections for this Durable Object
   for (const ws of this.ctx.getWebSockets()) {
    // Don't send message back to sender
@@ -436,7 +436,7 @@ export class Chat extends DurableObject<Env> {
     }
 
     // Broadcast message to all connected clients except sender
-    private broadcast(data: ChatMessage, self: WebSocket) {
+    private broadcast(data: ChatMessage, self?: WebSocket) {
         // Get all WebSocket connections for this Durable Object
         for (const ws of this.ctx.getWebSockets()) {
             // Don't send message back to sender
